@@ -12,12 +12,17 @@ public class CommandManager {
      */
 
     public static void bootThread(final Consumer<String> stringConsumer) {
+        
+        if (stringConsumer == null)
+            throw new NullPointerExeption("Consumer not found!");
+       
 
-        final Scanner scanner = new Scanner(System.in);
-
-        while (scanner.hasNext()) {
-            stringConsumer.accept(scanner.next());
-        }
+        new Thread(() -> {
+            final Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNext() {
+                stringConsumer.accept(scanner.next());
+            } 
+        }).start();
 
     }
 
@@ -29,7 +34,7 @@ public class CommandManager {
 
     public static void registerCommands() {
 
-        bootThread( string -> {
+        CommandManager.bootThread( string -> {
 
             if (string.equalsIgnoreCase("!shutdown")) {
                 // @TODO Implements ShutdownMethod!
